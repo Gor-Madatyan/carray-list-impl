@@ -5,7 +5,9 @@
 
 
 int main(void) {
-    arraylist list = arrlist(5, 0);
+    arraylist list = create_arraylist(5, 3);
+
+    init_arraylist(list, 1,2,3);
 
     append(&list, 1000);
     append(&list, 50000);
@@ -19,7 +21,6 @@ int main(void) {
 
     printf("\n%d", list.capacity);
 
-    free(list.arr);
-
+    dispose_arraylist(list);
     return 0;
 }

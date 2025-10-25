@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void init_arraylist(const arraylist list, va_list args) {
+static void init(const arraylist list, va_list args) {
 
     for (int *i = list.arr; i < list.arr + list.size; i++) {
         *i = va_arg(args, int);
@@ -13,7 +13,13 @@ void init_arraylist(const arraylist list, va_list args) {
     va_end(args);
 }
 
-arraylist arrlist(const int capacity, const int size) {
+void init_arraylist(const arraylist arr, ...) {
+    va_list args;
+    va_start(args, arr);
+    init(arr, args);
+}
+
+arraylist create_arraylist(const int capacity, const int size) {
     int *arr = calloc(capacity,sizeof(int));
 
     if (arr == NULL) {
@@ -25,14 +31,15 @@ arraylist arrlist(const int capacity, const int size) {
     return list;
 }
 
-arraylist arrlist_init(const int capacity, const int size, ...) {
+arraylist create_arraylist_init(const int capacity, const int size, ...) {
     va_list args;
     va_start(args, size);
 
-    const arraylist list  = arrlist(capacity, size);
-    init_arraylist(list, args);
-
-    va_end(args);
-
+    const arraylist list  = create_arraylist(capacity, size);
+    init(list, args);
     return list;
+}
+
+void dispose_arraylist(const arraylist arr) {
+    free(arr.arr);
 }
