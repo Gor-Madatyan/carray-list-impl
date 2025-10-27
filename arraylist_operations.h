@@ -3,6 +3,8 @@
 //
 #pragma once
 #include "arraylist_init.h"
+#define get(list, idx) (list).arr[(idx)]
+#define pop(list) (list).arr[--(list).size]
+#define set(list, idx, num) (list).arr[(idx)] = (num)
 
 void append(arraylist *list, int num);
-int get(arraylist list, int index);

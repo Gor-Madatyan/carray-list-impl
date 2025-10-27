@@ -3,9 +3,9 @@
 #include "arraylist_init.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdarg.h>
 
 static void init(const arraylist list, va_list args) {
-
     for (int *i = list.arr; i < list.arr + list.size; i++) {
         *i = va_arg(args, int);
     }
@@ -20,7 +20,7 @@ void init_arraylist(const arraylist arr, ...) {
 }
 
 arraylist create_arraylist(const int capacity, const int size) {
-    int *arr = calloc(capacity,sizeof(int));
+    int *arr = calloc(capacity, sizeof(int));
 
     if (arr == NULL) {
         fputs("Out of memory",stderr);
@@ -35,11 +35,7 @@ arraylist create_arraylist_init(const int capacity, const int size, ...) {
     va_list args;
     va_start(args, size);
 
-    const arraylist list  = create_arraylist(capacity, size);
+    const arraylist list = create_arraylist(capacity, size);
     init(list, args);
     return list;
-}
-
-void dispose_arraylist(const arraylist arr) {
-    free(arr.arr);
 }

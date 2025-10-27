@@ -20,7 +20,3 @@ void append(arraylist *list, const int num) {
 
     list->arr[list->size++] = num;
 }
-
-int get(const arraylist list, const int index) {
-    return list.arr[index];
-}

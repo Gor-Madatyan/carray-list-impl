@@ -1,5 +1,6 @@
 #pragma once
-#include <stdarg.h>
+
+#define dispose_arraylist(list) free((list).arr)
 
 struct {
     int capacity;
@@ -10,4 +11,3 @@ struct {
 void init_arraylist( arraylist list, ...);
 arraylist create_arraylist( int capacity,  int size);
 arraylist create_arraylist_init(int capacity, int size, ...);
-void dispose_arraylist(arraylist arr);
