@@ -8,3 +8,5 @@
 #define set(list, idx, num) (list).arr[(idx)] = (num)
 
 void append(arraylist *list, int num);
+int remove_idx(arraylist *list, int idx);
+void remove_it(arraylist *list, int number);

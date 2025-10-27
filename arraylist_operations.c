@@ -20,3 +20,18 @@ void append(arraylist *list, const int num) {
 
     list->arr[list->size++] = num;
 }
+
+int remove_idx(arraylist *list, const int idx) {
+    const int num = list->arr[idx];
+    for (int *curr = list->arr+idx+1; curr < list->arr + list->size; curr++)
+        *(curr-1) = *curr;
+    list->size--;
+
+    return num;
+}
+
+void remove_it(arraylist *list, const int number) {
+    int i;
+    for (i = 0; list->arr[i] != number && i < list->size; i++);
+    remove_idx(list, i);
+}

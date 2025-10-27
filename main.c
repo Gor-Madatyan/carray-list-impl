@@ -13,6 +13,7 @@ int main(void) {
     append(&list, 50000);
     append(&list, 20000);
     set(list, 2, 202020202);
+    remove_it(&list, 2);
     printf("%d\n",pop(list));
 
     for (int i = 0; i < list.size; i++) {
