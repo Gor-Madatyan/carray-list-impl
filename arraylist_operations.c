@@ -31,7 +31,11 @@ int remove_idx(arraylist *list, const int idx) {
 }
 
 void remove_it(arraylist *list, const int number) {
+    remove_idx(list, search(list, number));
+}
+
+int search(const arraylist *list, const int number) {
     int i;
     for (i = 0; list->arr[i] != number && i < list->size; i++);
-    remove_idx(list, i);
+    return i;
 }
