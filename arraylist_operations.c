@@ -34,8 +34,26 @@ void remove_it(arraylist *list, const int number) {
     remove_idx(list, search(list, number));
 }
 
-int search(const arraylist *list, const int number) {
+static int linear_search(const arraylist *list, const int number) {
     int i;
     for (i = 0; list->arr[i] != number && i < list->size; i++);
     return i;
+}
+
+static int binary_search(const arraylist *list, const int number) {
+    int low = 0;
+    int high = list->size-1;
+    while (low <= high) {
+        const int mid = (low + high) / 2;
+        if (number == list->arr[mid]) return mid;
+        if (number < list->arr[mid]) high = mid - 1;
+        else low = mid + 1;
+    }
+
+    return -1;
+}
+
+int search(const arraylist *list, const int number) {
+    if (list->is_ordered) return binary_search(list, number);
+    return linear_search(list, number);
 }
