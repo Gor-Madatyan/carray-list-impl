@@ -7,4 +7,6 @@ add_executable(array_list_impl main.c
         arraylist_init.c
         arraylist_init.h
         arraylist_operations.c
-        arraylist_operations.h)
+        arraylist_operations.h
+        util.c
+        util.h)

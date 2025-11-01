@@ -5,19 +5,16 @@
 
 
 int main(void) {
-    arraylist list = create_arraylist(10, 10);
+    arraylist list = create_arraylist(9, 9);
 
-    init_arraylist(&list, 10,30,34,37,41,50,70,71,74,75);
+    init_arraylist(&list, 4, 6, 3, 1, 5, 100, 4, 9,6);
 
-    insert(&list,2,1010101011);
+    sort(&list);
 
-    printf("%d\n", search(&list,75));
+    printf("%d\n", search(&list, 6));
 
-    for (int i = 0; i< list.size; i++)
-        printf("%d ", get(list,i));
-
-    printf("\n%d",list.capacity);
-
+    for (int i = 0; i < list.size; i++)
+        printf("%d ", get(list, i));
 
     dispose_arraylist(list);
     return 0;
