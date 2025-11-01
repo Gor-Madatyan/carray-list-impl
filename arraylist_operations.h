@@ -10,4 +10,5 @@
 void append(arraylist *list, int num);
 int remove_idx(arraylist *list, int idx);
 void remove_it(arraylist *list, int number);
+void insert(arraylist *list, int idx, int num);
 int search(const arraylist *list, int number);

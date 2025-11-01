@@ -3,11 +3,10 @@
 //
 
 #include "arraylist_operations.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
-void append(arraylist *list, const int num) {
+static void make_enough_capacity(arraylist *list) {
     if (list->size == list->capacity) {
         list->capacity += 50;
         int *arr = realloc(list->arr, list->capacity * sizeof(int));
@@ -17,7 +16,10 @@ void append(arraylist *list, const int num) {
         }
         list->arr = arr;
     }
+}
 
+void append(arraylist *list, const int num) {
+    make_enough_capacity(list);
     list->arr[list->size++] = num;
 }
 
@@ -32,6 +34,14 @@ int remove_idx(arraylist *list, const int idx) {
 
 void remove_it(arraylist *list, const int number) {
     remove_idx(list, search(list, number));
+}
+
+void insert(arraylist *list, const int idx, const int num) {
+make_enough_capacity(list);
+for (int *curr = list->arr+list->size; curr > list->arr+idx; curr--)
+    *curr = *(curr - 1);
+list->arr[idx] = num;
+list->size++;
 }
 
 static int linear_search(const arraylist *list, const int number) {

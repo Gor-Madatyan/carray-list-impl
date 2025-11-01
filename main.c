@@ -5,11 +5,19 @@
 
 
 int main(void) {
-    const arraylist list = create_arraylist(10, 10);
+    arraylist list = create_arraylist(10, 10);
 
     init_arraylist(&list, 10,30,34,37,41,50,70,71,74,75);
 
-    printf("%d", search(&list,75));
+    insert(&list,2,1010101011);
+
+    printf("%d\n", search(&list,75));
+
+    for (int i = 0; i< list.size; i++)
+        printf("%d ", get(list,i));
+
+    printf("\n%d",list.capacity);
+
 
     dispose_arraylist(list);
     return 0;
